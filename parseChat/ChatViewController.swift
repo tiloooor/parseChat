@@ -20,6 +20,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     func onTimer() {
         // Add code to be run periodically
         let query = PFQuery(className: "Message_fbu2017")
+        query.includeKey("user")
         query.findObjectsInBackground { (chatMessages: [PFObject]?, error: Error?) in
             if let chatMessages = chatMessages {
                 // do something with the array of object returned by the call
@@ -32,7 +33,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func pressSend(_ sender: Any) {
+        //set user equal to current user
         let chatMessage = PFObject(className: "Message_fbu2017")
+        chatMessage["user"] = PFUser.current()
         chatMessage["text"] = chatMessageField.text ?? ""
         chatMessage.saveInBackground { (success, error) in
             if success {
@@ -69,6 +72,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let messageText = messageObject["text"] as! String
         print(messageText)
         cell.messageLabel.text = messageText
+        
+        if let user = messageObject["user"] as? PFUser {
+            cell.usernameLabel.text = user.username
+        } else {
+            cell.usernameLabel.text = "Bob"
+        }
+        
         return cell
     }
     
