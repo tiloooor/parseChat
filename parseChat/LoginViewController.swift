@@ -109,6 +109,8 @@ class LoginViewController: UIViewController {
             if let error = error {
                 print("User log in failed: \(error.localizedDescription)")
             } else {
+                //ADDED performSegue method
+                self.performSegue(withIdentifier: "loginSegue", sender: nil)
                 print("User logged in successfully")
                 // display view controller that needs to shown after successful login
             }
