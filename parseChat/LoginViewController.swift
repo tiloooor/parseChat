@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var userNameTextField: UITextField!
@@ -27,12 +28,38 @@ class LoginViewController: UIViewController {
     
     //creates action for signup
     @IBAction func pressSignUp(_ sender: Any) {
+        if userNameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
+            let alertController = UIAlertController(title: "Username and Password Required", message: "Please enter a username and password.", preferredStyle: .alert)
+            
+            // create a cancel action
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+                // handle cancel response here. Doing nothing will dismiss the view.
+            }
+            // add the cancel action to the alertController
+            alertController.addAction(cancelAction)
+            
+            // create an OK action
+            let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                // handle response here.
+            }
+            // add the OK action to the alert cont
+            alertController.addAction(OKAction)
+            
+            
+            present(alertController, animated: true) {
+                // optional code for what happens after the alert controller has finished presenting
+            }
+        }
+        
+        
         // initialize a user object
         let newUser = PFUser()
+        
         
         // set user properties
         newUser.username = userNameTextField.text
         newUser.password = passwordTextField.text
+    
         
         // call sign up function on the object
         newUser.signUpInBackground { (success: Bool, error: Error?) in
@@ -43,11 +70,37 @@ class LoginViewController: UIViewController {
                 // manually segue to logged in view
             }
         }
+        
     }
     
     
     //creates action for login
     @IBAction func pressLogin(_ sender: Any) {
+        
+        if userNameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
+            let alertController = UIAlertController(title: "Username and Password Required", message: "Please enter a username and password.", preferredStyle: .alert)
+            
+            // create a cancel action
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+                // handle cancel response here. Doing nothing will dismiss the view.
+            }
+            // add the cancel action to the alertController
+            alertController.addAction(cancelAction)
+            
+            // create an OK action
+            let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                // handle response here.
+            }
+            // add the OK action to the alert cont
+            alertController.addAction(OKAction)
+            
+            
+            present(alertController, animated: true) {
+                // optional code for what happens after the alert controller has finished presenting
+            }
+        }
+        
+
         //if nill set to default, which is an empty string
         let username = userNameTextField.text ?? ""
         let password = passwordTextField.text ?? ""
