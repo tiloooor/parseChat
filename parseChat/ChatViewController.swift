@@ -9,12 +9,30 @@
 import UIKit
 import Parse
 
-class ChatViewController: UIViewController {
+class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var chatMessageField: UITextField!
     
+    var messages: [PFObject] = []
+    
+    func onTimer() {
+        // Add code to be run periodically
+        let query = PFQuery(className: "Message_fbu2017")
+        query.findObjectsInBackground { (chatMessages: [PFObject]?, error: Error?) in
+            if let chatMessages = chatMessages {
+                // do something with the array of object returned by the call
+                self.messages = chatMessages
+                self.tableView.reloadData()
+            } else {
+                print(error?.localizedDescription)
+            }
+        }
+    }
+    
     @IBAction func pressSend(_ sender: Any) {
-        let chatMessage = PFObject(className: "Message_fbuJuly2017")
+        let chatMessage = PFObject(className: "Message_fbu2017")
         chatMessage["text"] = chatMessageField.text ?? ""
         chatMessage.saveInBackground { (success, error) in
             if success {
@@ -30,13 +48,28 @@ class ChatViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        tableView.dataSource = self
+        Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.onTimer), userInfo: nil, repeats: true)
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatCell", for: indexPath) as! ChatCell
+        let messageObject = messages[indexPath.row]
+        let messageText = messageObject["text"] as! String
+        print(messageText)
+        cell.messageLabel.text = messageText
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
 
     /*
     // MARK: - Navigation
