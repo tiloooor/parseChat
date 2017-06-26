@@ -17,6 +17,7 @@
 		F71132301F018A6E00741936 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F711322E1F018A6E00741936 /* LaunchScreen.storyboard */; };
 		F711323B1F018A6F00741936 /* parseChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F711323A1F018A6F00741936 /* parseChatTests.swift */; };
 		F71132461F018A6F00741936 /* parseChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71132451F018A6F00741936 /* parseChatUITests.swift */; };
+		F71132541F018C0000741936 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71132531F018C0000741936 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		F71132411F018A6F00741936 /* parseChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = parseChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71132451F018A6F00741936 /* parseChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = parseChatUITests.swift; sourceTree = "<group>"; };
 		F71132471F018A6F00741936 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F71132531F018C0000741936 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 				F711322C1F018A6E00741936 /* Assets.xcassets */,
 				F711322E1F018A6E00741936 /* LaunchScreen.storyboard */,
 				F71132311F018A6E00741936 /* Info.plist */,
+				F71132531F018C0000741936 /* LoginViewController.swift */,
 			);
 			path = parseChat;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F71132541F018C0000741936 /* LoginViewController.swift in Sources */,
 				F71132281F018A6E00741936 /* ViewController.swift in Sources */,
 				F71132261F018A6E00741936 /* AppDelegate.swift in Sources */,
 			);
@@ -698,6 +702,7 @@
 				F711324C1F018A6F00741936 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F711324D1F018A6F00741936 /* Build configuration list for PBXNativeTarget "parseChatTests" */ = {
 			isa = XCConfigurationList;
@@ -706,6 +711,7 @@
 				F711324F1F018A6F00741936 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F71132501F018A6F00741936 /* Build configuration list for PBXNativeTarget "parseChatUITests" */ = {
 			isa = XCConfigurationList;
@@ -714,6 +720,7 @@
 				F71132521F018A6F00741936 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
